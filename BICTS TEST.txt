@@ -1,0 +1,284 @@
+1.  create database employee ;
+	use employee;
+	
+	create table employee_details(
+	
+	emp_id int auto_increment primary key,
+	emp_name varchar(45) not_null,
+	emp_age int,
+	emp_join_date Date
+	
+	
+	);
+	
+	Alter table employee_details insert column emp_salary;
+	
+	
+2. if(temp_table){
+	drop table temp_table
+	}
+
+3. create table product(
+	
+	product_id int auto_increment primary key,
+	product_name varchar(45) not_null,
+	product_price bigint
+	
+	);
+	
+4. alter table 'table_name' new 'new table_name';
+
+5. Alter table Inventory insert column category auto_increment ;
+
+6. insert into students(101, 'Alice', 20, 'A');
+
+7. update students set grade='B' where marks<=60;
+
+8. delete from Orders where status='Cancelled';
+
+9. 
+
+10. The data from the .csv file using jdbc this can be done by spearating it by comma and again insert the data by the String.
+
+11. select name from employee_details where emp_join_date > 20-01-2020;
+
+12. select Avg(emp_salary) , Maximum(emp_salary), Minimum(emp_salary);
+
+13. select order_name from Orders where price>=1000, status = Delivered;
+
+14. select count(*) from sales group by category;
+
+15. select name, order_name, order_details from Customers as C, Order as O where C_id= O_id;
+
+16. select name from Customers as C, Order as O where C_id= O_id;
+
+17. select name from Customers;
+
+18. select emp_name from employee_details where emp_salary >= Avg(emp_salary);
+
+19. select order_name from Orders where price >= Avg(price);
+
+20. select name,order_name from Customers as C, Orders as O and Products as P;
+
+21. 
+
+
+
+
+Hibernate & Jpa 
+
+26. ORM stands for Object Relational Mapping this will help us to establish the connection btw the java application entity and the DB
+	the architecture consists of the following 
+		i. Configuration
+		
+	   ii. Session Factory
+
+	  iii. Session
+	  
+	   iv. Transcation
+	   
+		v. Query
+		
+	   vi. Persistent Object		
+	   
+28. a) @OneToMany
+		-> this is used to define a one-to-many relationship between two entity classes. 
+		  This means that one instance of an entity (the "one" side) can be associated with multiple instances of another entity (the "many" side).
+		  This relationship is commonly used in database design to represent associations where a single record in one table can relate to multiple records in another table.
+	b) @OneToOne 
+		-> this used to define a one-to-one relationship between two entity classes. 
+		  In a one-to-one relationship, a single instance of one entity is associated with a single instance of another entity. 
+		  This type of relationship is commonly used in database design to represent associations where each record in one table corresponds to exactly one record in another table 
+	c) @ManyToOne
+		->is used to define a many-to-one relationship between two entity classes. 
+		 In a many-to-one relationship, multiple instances of one entity (the "many" side) can be associated with a single instance of another entity (the "one" side). 
+		 This type of relationship is commonly used in database design to represent associations where many records in one table correspond to a single record in another table.
+	
+	d) @Entity
+		-> this will indicate to the Spring
+
+		
+29. JPQL, or Java Persistence Query Language, is a query language used in the Java Persistence API (JPA) to perform database operations on entities.
+ It is similar to SQL (Structured Query Language) but is designed to work with Java objects rather than directly with database tables. 
+ 
+30. String query = "SELECT MIN(p.price) FROM Product p"
+
+31.     @Bean
+    public LocalContainerEntityManagerFactoryBean containerEntityManagerFactoryBean(){
+        LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
+        bean.setDataSource(getDataSource());
+        bean.setPackagesToScan("com.package.npacakge2.entity");
+        bean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        bean.setJpaProperties(getProperties());
+        return bean;
+    }
+
+    @Bean
+    public DataSource getDataSource(){
+        DriverManagerDataSource dataSource  =  new DriverManagerDataSource();
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/db_name ");
+        dataSource.setUsername("root");
+        dataSource.setPassword("pwd");
+        return dataSource;
+
+32. JDBC has six steps 
+
+	1. Load and register 
+	2. establish the connection 
+	3. create the statement 
+	4. excuste the query 
+	5. process the results
+	6. close the costly resources
+	
+	here in step 1 the registeration of the class name and also the driver manager and along with the port number must be entered'com.mysql.cj.jdbc.Driver' 
+	and from step 2 we need to establish the connection using the url, username, pwd after the connection being estalished create the statements and excute the wrtten queries 
+	and after the excuetion the results need to be procesed and the connection resources must be closed in order the prevent the data from leakage or data breach.
+	
+33. b. Encapsulation.
+	 the block of code of the number of classes encapsulated to a single block of code or single class.
+	 
+	 this can be achieved using the Key word private
+	 
+	 example: the pattern of a mobile phone or the passcode.
+	 
+	 public class Employee(){
+	 
+	 private int empId;
+	 
+	 private String emp_name;
+	 
+	 }
+	 
+	 these can be accessed using getter and setter methods or also by the dependecy of the lombok.
+	 
+	 c. Inheritance 
+		Inheritance it inherits the properties of one class  to another class such as Parent class/ super class/ base class 
+				to Child class/sub class/ derived class.
+				It uses the extends keyword
+				using "extends" keyword the child or sub or the derived class can have all the methods and sub classes in it which can be overridden by @override this can change the behaviour.
+
+		example: child has inherited the dieases of diabetes from ancestors.
+		
+		public class AppoloHospital extends Hospital{
+		}
+	d. Abstraction 
+		the process of hiding the functionality of the class or the methods which can changed or overridden without change in the functionality.
+		
+		public class A{
+		
+		public abstract void b();
+		
+		
+		}
+		
+		public class Z implments A{
+		
+		@Override
+		public class void c();
+		
+		}
+		
+		example:
+		
+	a. Polymorphism - It consists of one or more forms of same class . It has 2 types - compile time polymorphism and run time polymorphism 
+
+			for an example -  class tea{
+						
+						public int teaId;
+						public String teaName;
+						
+						public void getTeaId(int teaId){
+						this.teaId = teaId;
+						}
+
+					}
+	e. Throw 
+		this is used to prevent the application from creashing and if the application is crashing then it wont let the progem to stop abruptly and display the error message
+					
+34. a. .equals() & == 
+		.equals() is used to compare the string  and == is used to comapre the values.
+		
+	b. final & finally 
+		final is the keyword which is used to fix the value of the variable 
+		finally is used in methods which is declared as they can't be overridden
+		
+	c. implements is used to implement the abstract methods
+		extends is used to inherit the methods and variable from the Parent class
+		
+	d. checked is used during complie time 
+		unchecked is used during run time 
+		
+	e. treemap - it stores value in the form key and value
+		hashmap - checks the hashcode of the value and then adds it 
+		linkedhashmap- holds the address of before and after with no same data as it is and checks the hashcode 
+		
+	f. @EnableWebMvc - is used to make the project as Web project.
+		@Configuration - is written at the top of the Configuration class to make sure that the configuration is known by bean factory and spring 
+				
+ 35. Worng Loop Condition and Compliation error;
+  
+ 36. a = 10; b = 15 ; 
+ 
+ 37. compilation error;
+ 
+ 38. true;
+
+ 39.  
+ 
+ 40. true;
+ 
+ 41. 4;
+ 
+ 42. 
+ 
+ 43. true;
+ 
+ 44. the advantage of the constructor is the reduces time and create more roubust maintainable and testable code; 
+ 
+ 45. Only the first class will be accessed;
+ 
+ 46. Hello message will be returned 
+ 
+ 47. Service 
+  
+	@Service
+	public class UserService {
+    @Autowired
+    private UserRepository userRepository;
+
+    public User getUserByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+}
+
+	RestController
+
+
+	@GetMapping("email/{email}")
+    public ResponseEntity<User> getUserByEmail(@PathVariable String email) {
+        User user = userService.getUserByEmail(email);
+        if (user != null) {
+            return ResponseEntity.ok(user);
+        } else {
+            return ResponseEntity.notFound().build;
+        }
+    }
+	
+	
+ 49. 0(n);
+ 
+ 50. int i= 1;
+	 int j= 1;
+	 for(i=1,i<5,i++);
+ 
+ 54. DisptcherServlet is the main component of the spring Mvc which has the control of all the components and assings the work accordingly.
+ 
+ 55. we use a class VeiwReslover which will retrun the jsp page without its extension '.jsp'
+ 
+ 56. @Configuration is used to configure the class to make it visible to the bean 
+	@Bean it is like a component which creates an instance
+	DI- @Autowired is used to achieve this which creates the instance of the particular object which reduce the size of code and also complie time.
+	IOC - stands for Inversio of Control it handles 
+	
+	
